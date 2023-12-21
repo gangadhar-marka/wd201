@@ -6,33 +6,24 @@ beforeEach(() => {
 });
 
 describe("TodoList Test Suite", () => {
-  test("Should add new todo", () => {
+  test("add new todo", () => {
     const todoItemsCount = todos.all.length;
     todos.add({
-      title: "Test todo 2",
-      completed: false,
-      dueDate: "2023-12-20",
+      title: "Test todo 2", completed: false, dueDate: "2023-12-21",
     });
     expect(todos.all.length).toBe(todoItemsCount + 1);
   });
 
-  test("Should mark a todo as complete", () => {
+  test("mark a todo as complete", () => {
     todos.add({
-      title: "Test todo",
-      completed: false,
-      dueDate: "2023-12-20",
+      title: "Test todo", completed: false, dueDate: "2023-12-21",
     });
 
-    expect(todos.all[0].completed).toBe(false);
-    todos.markAsComplete(0);
-    expect(todos.all[0].completed).toBe(true);
+    expect(todos.all[0].completed).toBe(false); todos.markAsComplete(0); expect(todos.all[0].completed).toBe(true);
   });
 
-  test("Should retrieve overdue items", () => {
-    const dateToday = new Date();
-    const formattedDate = (d) => d.toISOString().split("T")[0];
-    const yesterday = formattedDate(
-      new Date(dateToday.setDate(dateToday.getDate() - 1)),
+  test("retrieve overdue items", () => {
+    const dateToday = new Date(); const formattedDate = (d) => d.toISOString().split("T")[0]; const yesterday = formattedDate( new Date(dateToday.setDate(dateToday.getDate() - 1)),
     );
 
     const overDueTodoItemsCount = todos.overdue().length;
@@ -45,7 +36,7 @@ describe("TodoList Test Suite", () => {
     expect(todos.overdue().length).toEqual(overDueTodoItemsCount + 1);
   });
 
-  test("Should retrieve due today items", () => {
+  test("retrieve due today items", () => {
     const dateToday = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const today = formattedDate(dateToday);
@@ -60,7 +51,7 @@ describe("TodoList Test Suite", () => {
     expect(todos.dueToday().length).toEqual(DueTodayTodoItemsCount + 1);
   });
 
-  test("Should retrieve due later items", () => {
+  test("retrieve due later items", () => {
     const dateToday = new Date();
     const formattedDate = (d) => d.toISOString().split("T")[0];
     const tomorrow = formattedDate(
